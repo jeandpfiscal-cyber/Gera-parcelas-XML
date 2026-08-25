@@ -1,0 +1,45 @@
+PARCELAS NF-e → DOMÍNIO
+========================
+
+O QUE O APP FAZ
+----------------
+1. Você envia os XMLs das notas de entrada (pode enviar vários de uma vez).
+2. O app lê cada nota e extrai as parcelas (bloco <cobr><dup>).
+3. Gera a planilha "parcelas_importacao_dominio.xlsx" no layout do
+   MODELO_PARCELA.xlsx (colunas: NUMERO NF | NOME DO FORNECEDOR |
+   VALOR PARCELA | VENCIMENTO), com uma linha por parcela, empilhadas
+   uma abaixo da outra quando a nota tem mais de uma.
+
+REGRAS JÁ CONFIGURADAS (conforme combinado)
+--------------------------------------------
+- Nota SEM informação de parcela no XML -> gera 1 parcela única, com
+  vencimento igual à data de emissão da nota e valor igual ao total da NF.
+- CFOPs que não geram parcela (transferência, outras entradas, bonificação
+  etc.) ficam configuráveis na tela lateral do app ("Configurações"),
+  editáveis a qualquer momento — não precisa mexer no código.
+  Uma lista inicial já vem sugerida, mas revise e ajuste conforme a
+  realidade de vocês.
+- Se uma nota tiver CFOPs misturados (alguns da lista de exclusão e outros
+  não), ela É processada, mas aparece num aviso "CFOP misto" para revisão
+  manual, já que não dá para saber automaticamente qual item deveria ou
+  não virar parcela.
+
+COMO RODAR (Windows)
+---------------------
+1. Precisa ter Python instalado (python.org) — marque a opção "Add to PATH"
+   na instalação, se for a primeira vez.
+2. Dê dois cliques em "iniciar_app.bat".
+3. O navegador vai abrir automaticamente com o app.
+
+PONTOS PARA REVISAR ASSIM QUE O DOMÍNIO CONFIRMAR O LAYOUT
+-------------------------------------------------------------
+- A data está sendo escrita como texto no formato DD/MM/AAAA. Se o Domínio
+  exigir célula de data "de verdade" (não texto) ou outro formato, é um
+  ajuste rápido no código (função gerar_planilha).
+- O "NUMERO NF" está sendo extraído puro (sem série). Se o Domínio pedir
+  número + série juntos, ou CNPJ do fornecedor em vez do nome, também é
+  ajuste simples.
+- Confirme se o Domínio identifica o fornecedor pelo NOME exatamente como
+  vem no XML (xNome do emitente) ou se precisa bater com o cadastro dele
+  de outra forma (ex: nome cadastrado pode ser abreviado/diferente do
+  XML) — isso pode gerar erro de importação por fornecedor não encontrado.

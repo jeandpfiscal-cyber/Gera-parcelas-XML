@@ -1,0 +1,9 @@
+[
+  {"cfop": "1949", "descricao": "Outra entrada de mercadoria não especificada"},
+  {"cfop": "2949", "descricao": "Outra entrada de mercadoria não especificada"},
+  {"cfop": "1152", "descricao": "Transferência de mercadoria adquirida de terceiros"},
+  {"cfop": "2152", "descricao": "Transferência de mercadoria adquirida de terceiros"},
+  {"cfop": "1908", "descricao": "Remessa por conta e ordem de terceiros"},
+  {"cfop": "1910", "descricao": "Entrada de bonificação, doação ou brinde"},
+  {"cfop": "2910", "descricao": "Entrada de bonificação, doação ou brinde"}
+]
